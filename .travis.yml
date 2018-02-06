@@ -1,0 +1,28 @@
+sudo: true
+language: java
+jdk:
+- oraclejdk8
+install:
+- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+script:
+- mvn surefire:test
+- mvn jar:jar
+notifications:
+  slack: dyti234:6KAy6KgKN7R8TJbsIxsgukNF
+  email:
+  - davidyannick@gmail.com
+services: mongodb
+
+before_script:
+  - sleep 15
+  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
+
+deploy:
+  provider: releases
+  api_key:
+    secure: MqGvADAJkxwXHfTWQBJAwCkXto+zz3Kqsz+BgsiurO9y+cirG2DogoJCNBi0/+IhTaYtDYeEJ9q4H0JFvmyQCcZytVGgNXJl3F4V1HEb9hv3lyWt+KesA1QZ0UfMpBnOvHncnPa0Q8KhwFFhMRW49Blb4TQcnQtSjp6wQ2UzryvBUdJm5sUEEYMg5w6QeRWheL6uL7IoLcxTb4FfJmYoOBTzL15IQN2SND3PXK+/+s3dQoCgBNIp1suGB/hSj/x5qBTLUwd4rGW6HAeTeMw/QUFsWHRtXaRmmJK/mVq9/FWv97FZKdci8yZvx5jjuu43y4GlJcqamJLT3KC1TVzn+K9t2wW4rktCA7guLdNlZOdGmjwhh9QrHbXQgsK2JIQlHjkavPmsFtBzgAIPIVeFk4WmffVxEVxmsDHbHdlyBBwVpVyTcI6wH2tjzuBj19HBhl76uHPbF2g0MxeeGCKnBMOOlhBQGK5ZWMdMpE6CfyhSt7DwPtIZ/Zz3XFIrezAlYVO2X/dDCL6/bIcPguoOzCuhccdz3mUi3EBR2eu87nURigtVMWdPBCGF89RIXltu4AGVp109OgtZZRiTHwNHIyilNoxaK+Kfcy/+/ATVpmR03CZZAsjbIDOkf0o+7G+6g5Q+NrkpcRx82k9guYiZh2IPoQe+/NccRa3ivZbIaHU=
+  file: $TRAVIS_BUILD_DIR/target/reactivepokedex-0.0.1.jar
+  file_glob: true
+  skip_cleanup: true
+  on:
+    repo: tavandev/ReactivePokedex
