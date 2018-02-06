@@ -4,5 +4,5 @@ box:
 build:
   steps:
     - java/maven:
-      goals: clean verify
+      goals: clean test
       version: 3.5.2
