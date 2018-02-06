@@ -21,7 +21,7 @@ deploy:
   secret_access_key:
     secure: X6sYhp4dqKSytrMY689IqFqBHj8CUTzLVnYtBftNK/llq3PMXAoM5pZtNJo8OokjskHMmysYd+wgKfBvDG6pogcVCNIx/O+ISswMX4j+WsuiEOaeKgHtBwN8HR3y8LIWrTlq/XCi1f0sTi8qrvLMSyTvM9mC6kNvycc1u8fUVG60Z5m8RGYhVkjvO0XQua4LiUHHB4K1DdRi3eiVGSyoYATZYUxwK/3KBS8ehUkys9jR8mDKpSi0oFLdp+P7pV1U7QUvZQ9+duuU9lsgNHrEm95Oc5ozmQDBjDuQiN1MwNQv5Gah8A/GGuSpieUUaOVzCxisO51xW2rnWHp6TwA/UUClOCl9nrCVOnCRPxDOwWZJIDjmyJrDQ6CVab/Q5EATuFF4MvC8habyPZtqqK0G3MRD3Vo/Et5mp4SNJ5wAW88ESlG7HFG2L/cyQKvpv0kB3lj9x5mCOxDzGUS/IKbN7P5bMSJgkAeypmr2/bZt766+AlPMCl+C75bUR8q+t3Xjs2rLZxew59ukTaNQ5eAzJtUsDH6qN117d/D68/B5zz8YT+De9xvRru1LN4jnMJWXhWaK+6rzXn6vtGN+CamYMBtETtNOf2mOEI/6q6+Hk5Zr5jT710LUbxutFti5RVS3XosCCF4fLd/JJm+8QXxpPkts8b9foUwwzvv5e+yKkDQ=
   bucket: deploy_jar
-  upload-dir: "$TRAVIS_COMMIT-$TRAVIS_BUILD_NUMBER"
+  upload-dir: "$TRAVIS_BUILD_NUMBER-$TRAVIS_COMMIT"
   local-dir: target
   skip_cleanup: true
   on:
