@@ -12,17 +12,15 @@ notifications:
   email:
   - davidyannick@gmail.com
 services: mongodb
-
 before_script:
-  - sleep 15
-  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
-
+- sleep 15
+- mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
 deploy:
-  provider: releases
-  api_key:
-    secure: MqGvADAJkxwXHfTWQBJAwCkXto+zz3Kqsz+BgsiurO9y+cirG2DogoJCNBi0/+IhTaYtDYeEJ9q4H0JFvmyQCcZytVGgNXJl3F4V1HEb9hv3lyWt+KesA1QZ0UfMpBnOvHncnPa0Q8KhwFFhMRW49Blb4TQcnQtSjp6wQ2UzryvBUdJm5sUEEYMg5w6QeRWheL6uL7IoLcxTb4FfJmYoOBTzL15IQN2SND3PXK+/+s3dQoCgBNIp1suGB/hSj/x5qBTLUwd4rGW6HAeTeMw/QUFsWHRtXaRmmJK/mVq9/FWv97FZKdci8yZvx5jjuu43y4GlJcqamJLT3KC1TVzn+K9t2wW4rktCA7guLdNlZOdGmjwhh9QrHbXQgsK2JIQlHjkavPmsFtBzgAIPIVeFk4WmffVxEVxmsDHbHdlyBBwVpVyTcI6wH2tjzuBj19HBhl76uHPbF2g0MxeeGCKnBMOOlhBQGK5ZWMdMpE6CfyhSt7DwPtIZ/Zz3XFIrezAlYVO2X/dDCL6/bIcPguoOzCuhccdz3mUi3EBR2eu87nURigtVMWdPBCGF89RIXltu4AGVp109OgtZZRiTHwNHIyilNoxaK+Kfcy/+/ATVpmR03CZZAsjbIDOkf0o+7G+6g5Q+NrkpcRx82k9guYiZh2IPoQe+/NccRa3ivZbIaHU=
-  file: $TRAVIS_BUILD_DIR/target/reactivepokedex-0.0.1.jar
-  file_glob: true
-  skip_cleanup: true
+  provider: gcs
+  access_key_id: GOOGGTJC42EKR3OVUI4M
+  secret_access_key:
+    secure: X6sYhp4dqKSytrMY689IqFqBHj8CUTzLVnYtBftNK/llq3PMXAoM5pZtNJo8OokjskHMmysYd+wgKfBvDG6pogcVCNIx/O+ISswMX4j+WsuiEOaeKgHtBwN8HR3y8LIWrTlq/XCi1f0sTi8qrvLMSyTvM9mC6kNvycc1u8fUVG60Z5m8RGYhVkjvO0XQua4LiUHHB4K1DdRi3eiVGSyoYATZYUxwK/3KBS8ehUkys9jR8mDKpSi0oFLdp+P7pV1U7QUvZQ9+duuU9lsgNHrEm95Oc5ozmQDBjDuQiN1MwNQv5Gah8A/GGuSpieUUaOVzCxisO51xW2rnWHp6TwA/UUClOCl9nrCVOnCRPxDOwWZJIDjmyJrDQ6CVab/Q5EATuFF4MvC8habyPZtqqK0G3MRD3Vo/Et5mp4SNJ5wAW88ESlG7HFG2L/cyQKvpv0kB3lj9x5mCOxDzGUS/IKbN7P5bMSJgkAeypmr2/bZt766+AlPMCl+C75bUR8q+t3Xjs2rLZxew59ukTaNQ5eAzJtUsDH6qN117d/D68/B5zz8YT+De9xvRru1LN4jnMJWXhWaK+6rzXn6vtGN+CamYMBtETtNOf2mOEI/6q6+Hk5Zr5jT710LUbxutFti5RVS3XosCCF4fLd/JJm+8QXxpPkts8b9foUwwzvv5e+yKkDQ=
+  bucket: deploy_jar
+  local-dir: target
   on:
-    repo: tavandev/ReactivePokedex
+    repo: tavandev/Pokedex
