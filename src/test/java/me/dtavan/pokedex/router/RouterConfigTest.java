@@ -1,6 +1,5 @@
 package me.dtavan.pokedex.router;
 
-
 import me.dtavan.pokedex.ResourcesForTest;
 import me.dtavan.pokedex.services.PokemonService;
 import org.junit.Before;
